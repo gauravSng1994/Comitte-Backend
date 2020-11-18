@@ -6,10 +6,12 @@ keystone.init({
   'user model': 'User',
   'auto update': true,
   'auth': true,
-  'favicon': 'public/favicon.ico',
+  //'favicon': 'public/favicon.ico',
   'less': 'public',
   'static': 'public',
   'views': 'templates/views',
+  'view engine': 'handlebars',
+  'session': true,
   'view engine': 'pug',
   'mongo': process.env.MONGO_URI || process.env.MONGOLAB_URI || 'mongodb://localhost/hospital',
 });
