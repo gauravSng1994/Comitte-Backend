@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4224b81d-9461-4cb4-bc3c-4d7a4575f81a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/models/Experience.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/Jobs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/Skills.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/UserRole.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/UserRole.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1kn47SQaRdCEBYBHEQh5ti0ekXJ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4224b81d-9461-4cb4-bc3c-4d7a4575f81a" name="Default Changelist" comment="" />
+      <created>1606322853468</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606322853468</updated>
+      <workItem from="1606322854543" duration="3812000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="169" y="126" width="1651" height="854" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606329932613">
+      <screen x="69" y="27" width="1851" height="1053" />
+    </state>
+    <state x="169" y="126" width="1651" height="854" key="com.intellij.history.integration.ui.views.FileHistoryDialog/69.27.1851.1053@69.27.1851.1053" timestamp="1606329932613" />
+    <state x="674" y="302" width="641" height="502" key="find.popup" timestamp="1606325618132">
+      <screen x="69" y="27" width="1851" height="1053" />
+    </state>
+    <state x="674" y="302" width="641" height="502" key="find.popup/69.27.1851.1053@69.27.1851.1053" timestamp="1606325618132" />
+  </component>
+</project>

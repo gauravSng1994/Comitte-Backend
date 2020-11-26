@@ -4,8 +4,9 @@ var Types = keystone.Field.Types;
 var UserRole = new keystone.List('UserRole');
 
 UserRole.add({
-  name: { type: String, required: true, initial: true },
- 
+  roleId: { type: Types.Number, required: true, initial: true, unique:true },
+  roleType: { type: Types.Text, required: true, initial: true },
+
 });
 
 UserRole.schema.virtual('canAccessKeystone').get(function () {
@@ -13,5 +14,5 @@ UserRole.schema.virtual('canAccessKeystone').get(function () {
 });
 
 
-UserRole.defaultColumns = 'name';
+UserRole.defaultColumns = 'id, roleType';
 UserRole.register();
