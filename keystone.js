@@ -2,7 +2,7 @@ var keystone = require('keystone');
 
 keystone.init({
   'name': 'Hospital app',
-  'cookie secret': 'secure string goes here',
+  'cookie secret': process.env.COOKIE_SECRET || 'secure string goes here',
   'user model': 'User',
   'auto update': true,
   'auth': true,
