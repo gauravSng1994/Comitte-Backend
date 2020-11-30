@@ -1,15 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="4224b81d-9461-4cb4-bc3c-4d7a4575f81a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/routes/api/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/api/jobs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/middleware.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/AuthService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Skills.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Skills.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/keystone.js" beforeDir="false" afterPath="$PROJECT_DIR$/keystone.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -22,9 +54,15 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/services" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/services" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -42,18 +80,31 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
     <state x="521" y="188" width="947" height="737" key="SettingsEditor" timestamp="1606389020992">
       <screen x="69" y="27" width="1851" height="1053" />
     </state>
     <state x="521" y="188" width="947" height="737" key="SettingsEditor/69.27.1851.1053@69.27.1851.1053" timestamp="1606389020992" />
-    <state x="169" y="126" width="1651" height="854" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606329932613">
-      <screen x="69" y="27" width="1851" height="1053" />
+    <state x="2024" y="102" width="1713" height="876" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606737818863">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
+    <state x="2024" y="102" width="1713" height="876" key="com.intellij.history.integration.ui.views.FileHistoryDialog/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1606737818863" />
     <state x="169" y="126" width="1651" height="854" key="com.intellij.history.integration.ui.views.FileHistoryDialog/69.27.1851.1053@69.27.1851.1053" timestamp="1606329932613" />
-    <state x="674" y="302" width="641" height="502" key="find.popup" timestamp="1606325618132">
-      <screen x="69" y="27" width="1851" height="1053" />
+    <state x="2548" y="282" width="665" height="522" key="find.popup" timestamp="1606736484412">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
+    <state x="2548" y="282" width="665" height="522" key="find.popup/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1606736484412" />
     <state x="674" y="302" width="641" height="502" key="find.popup/69.27.1851.1053@69.27.1851.1053" timestamp="1606325618132" />
   </component>
 </project>
