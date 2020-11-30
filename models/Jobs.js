@@ -4,16 +4,20 @@ const Types = keystone.Field.Types;
 var Jobs = new keystone.List('Jobs');
 
 Jobs.add({
-    cost: {type: Types.Text, required: true, index: true, initial: true, label: 'Job Title'},
-    address: {type: Types.TextArray},
-    department: {type: Types.Text},
-    location: {type: Types.Text},
-    startDate: {type: Types.Date, label: 'Date Of Joining'},
+    jobId: {type: String},
+    name:{type: String},
+    shift: {type: Types.Select, options: ['Morning', 'Evening']},
+    cost: {type: Types.Text, required: true, index: true, initial: true},
+    startDate: {type: Types.Datetime, label: 'Date Of Joining'},
+    endDate: {type: Types.Datetime},
+    hospital: {type: Types.Relationship, ref: 'Hospital'},
+    department: {type: Types.Relationship, ref: 'Departments'},
+
 });
 
 Jobs.schema.virtual('canAccessKeystone').get(function () {
     return true;
 });
 
-Jobs.defaultColumns = 'cost, startDate';
+Jobs.defaultColumns = 'name, jobId, cost';
 Jobs.register();
