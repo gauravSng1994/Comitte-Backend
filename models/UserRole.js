@@ -14,5 +14,5 @@ UserRole.schema.virtual('canAccessKeystone').get(function () {
 });
 
 
-UserRole.defaultColumns = 'id, roleType';
+UserRole.defaultColumns = 'roleId, roleType';
 UserRole.register();
