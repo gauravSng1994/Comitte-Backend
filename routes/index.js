@@ -34,4 +34,5 @@ exports = module.exports = function(app) {
     app.get('/jobs',routes.api.jobs.listJobs)
     app.post('/login',routes.api.auth.login)
     app.post('/signup',routes.api.auth.signup)
+    app.put('/user',routes.api.user.update)
 }
