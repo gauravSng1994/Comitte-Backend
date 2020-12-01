@@ -11,7 +11,6 @@ User.add({
   lastLoggedIn: {type: Types.Datetime},
   isActive:{type: Types.Boolean},
   isDeleted:{type: Types.Boolean},
-  role:{type: Types.Relationship, ref: 'UserRole', noedit: true},
   avatar: {type: String},
   // location: {type: Types.GeoPoint},
   address: {type: Types.Location, defaults: {country: 'India'} },
@@ -30,10 +29,13 @@ User.add({
   lastSalarySlip: {type: String}, //to be modified to S3Storage
   marksheets: {type: String}, //to be modified to S3Storage
   availabilityOfwork:{type: Types.Datetime}
+},'Permissions',{
+  role:{type: Types.Relationship, ref: 'UserRole', noedit: true,initial:true, required:false},
+  isAdmin: {type: Boolean, label: 'Can access Admin', initial: true, index: true, default: true},
 });
 
 User.schema.virtual('canAccessKeystone').get(function () {
-  return true;
+  return this.isAdmin;
 });
 
 User.defaultColumns = 'name, email, skills';
