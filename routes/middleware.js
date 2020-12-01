@@ -7,8 +7,8 @@
  * you have more middleware you may want to group it as separate
  * modules in your project's /lib directory.
  */
-var _ = require('lodash');
-var AuthService = require('../services/AuthService');
+const _ = require('lodash');
+const AuthService = require('../services/AuthService');
 /**
  Initialises the standard view locals
 
@@ -93,7 +93,7 @@ exports.tokenAuthCommon = function (req, res, next) {
 
 
 exports.tokenAuth = function (req, res, next) {
-    var token = req.headers['authorization'] || req.headers['Authorization'] || req.query.token || (req.cookies && req.cookies['_casspvtssk'] || undefined) || undefined;
+    let token = req.headers['authorization'] || req.headers['Authorization'] || req.query.token || (req.cookies && req.cookies['_casspvtssk'] || undefined) || undefined;
 
     try {
         delete req.query.token;
@@ -103,7 +103,7 @@ exports.tokenAuth = function (req, res, next) {
 
     if (token) {
         token = token.trim().replace(/^Bearer /, '').trim();
-        var session = AuthService.decrypt(token);
+        const session = AuthService.decrypt(token);
         if (session instanceof Error) {
             console.log(session)
         }

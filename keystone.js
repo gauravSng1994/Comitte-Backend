@@ -1,4 +1,5 @@
 var keystone = require('keystone');
+require('dotenv').config();
 // const handlebars = require('express-handlebars');
 keystone.init({
     'name': 'Hospital app',
