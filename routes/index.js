@@ -34,5 +34,9 @@ exports = module.exports = function(app) {
     app.get('/jobs',routes.api.jobs.listJobs)
     app.post('/login',routes.api.auth.login)
     app.post('/signup',routes.api.auth.signup)
-    app.put('/user',routes.api.user.update)
+
+    // user
+    app.get('/user',middleware.isLoggedIn,routes.api.user.getUser)
+    app.get('/nurses',middleware.isLoggedIn,routes.api.user.listNurses)
+    app.put('/user',middleware.isLoggedIn,routes.api.user.updateUser)
 }

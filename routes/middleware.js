@@ -8,6 +8,9 @@
  * modules in your project's /lib directory.
  */
 const _ = require('lodash');
+const jwt = require("jsonwebtoken");
+const keystone = require('keystone');
+const UserModel = keystone.list('User').model;
 const AuthService = require('../services/AuthService');
 /**
  Initialises the standard view locals
@@ -143,4 +146,27 @@ exports.tokenAuthDataClient = (req, res, next) => {
     }
 
     next();
+};
+
+
+exports.isLoggedIn = function(req, res, next) {
+    const token = req.header("Authorization") || req.header("authorization");
+    if (!token) return res.status(400).json({ message:"Token expired",err:"Token not found." });
+    try {
+        jwt.verify(token, process.env.JWT_SECRET, async (err, decoded)=>{
+            console.log(decoded);
+            if(err) return res.status(400).json({authError: true, message: 'Failed to authenticate token',err});
+            else{
+                let user = await UserModel.findOne({_id:decoded.user.id}).lean();
+                if(user.isDeleted) return res.json({authError: true, message: 'Your account is disabled, please contact your administrator'});
+                req.user = user;
+                return next();
+            }
+        });
+    } catch (e) {
+        return res.json({
+            message:"Token expired",
+            err:e
+        })
+    }
 };
