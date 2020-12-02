@@ -128,7 +128,7 @@ const login = async (req,res) => {
                     console.log('token', token)
                     res.status(200).json({
                         token,
-                        data:user
+                        user
                     });
                 }
             );
