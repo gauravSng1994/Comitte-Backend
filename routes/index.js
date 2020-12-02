@@ -38,6 +38,9 @@ exports = module.exports = function(app) {
     app.post('/signup',routes.api.auth.signup)
     app.post('/resetPassword',routes.api.auth.resetPassword)
 
+    app.get('/departments',routes.api.listDepartment.listDepartments)
+    app.get('/hospitals',routes.api.listHospital.listHospitals)
+
     // user
     app.get('/user',middleware.isLoggedIn,routes.api.user.getUser)
     app.get('/nurses',middleware.isLoggedIn,routes.api.user.listNurses)
