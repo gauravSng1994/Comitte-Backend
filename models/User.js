@@ -1,4 +1,4 @@
-var keystone = require('keystone');
+const keystone = require('keystone');
 const Types = keystone.Field.Types;
 
 var User = new keystone.List('User',{
@@ -21,6 +21,7 @@ var User = new keystone.List('User',{
 });
 
 User.add({
+  userName:{type:String}, // this will also behave as referral code
   name: {type: Types.Name, required: true, index: true, initial: true},
   email: { type: Types.Email, unique: true,required:true,initial:true },
   password: {type: Types.Password,required:true,initial:true},
@@ -31,7 +32,7 @@ User.add({
   avatar: {type: String},
   // location: {type: Types.GeoPoint},
   address: {type: Types.Location, defaults: {country: 'INDIA'} },
-  skills: {type: Types.Relationship, ref: 'Skills', many:true},
+  skills: {type: Types.Relationship, ref: 'Skill', many:true},
   gender: {type: Types.Select, options: 'MALE, FEMALE, OTHER'},
   dob: {type: Types.Date, label: 'Date of Birth'},
   experienceInYears: {type: Types.Select, options: ['1', '2', '3', '4','5+']},
@@ -45,7 +46,7 @@ User.add({
   lastWorkExperienceCertificate: {type: String}, //to be modified to S3Storage
   lastSalarySlip: {type: String}, //to be modified to S3Storage
   marksheet: {type: String}, //to be modified to S3Storage
-  availabilityOfwork:{type: Types.Datetime}
+  availabilityOfwork:{type: Types.Datetime},
 },'Permissions',{
   role:{type: Types.Relationship, ref: 'UserRole', noedit: true,initial:true, required:false},
   isAdmin: {type: Boolean, label: 'Can access Admin', initial: true, index: true, default: true},
@@ -54,14 +55,35 @@ User.add({
 User.schema.virtual('canAccessKeystone').get(function () {
   return this.isAdmin;
 });
+const generateRefCode = (wordLength,numLength)=>{
+  let alphabets = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+  let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const picks = [];
+  for (let i = 0; i < wordLength; i++) {
+    let key = Math.floor(Math.random()*alphabets.length);
+    picks.push(alphabets[key].toUpperCase());
+  }
+  for(let k = 0; k < numLength; k++) {
+    let pin = Math.floor(Math.random()*numbers.length);
+    picks.push(numbers[pin]);
+  }
+  return picks.join("");
+}
+const assignUserName = async () => {
+  let user,newUserName;
+  do{
+    newUserName = generateRefCode(2,4);
+    user = await User.model.findOne({userName:newUserName});
+  }while(user)
+  return newUserName;
+}
+User.schema.pre('save', async function (next){
+  if(!this.userName) this.userName = await assignUserName();
+  next();
+})
 
 User.defaultColumns = 'name, email, role phoneNumbers';
 User.register();
-
-// User.model.schema.pre('save',async (next)=>{
-//   console.log(this);
-//   next();
-// })
 
 
 /**

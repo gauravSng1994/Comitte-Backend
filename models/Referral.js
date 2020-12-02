@@ -1,7 +1,11 @@
-var keystone = require('keystone');
+const keystone = require('keystone');
 const Types = keystone.Field.Types;
 
-var Referral = new keystone.List('Referral');
+const Referral = new keystone.List('Referral',{
+    track:true,
+    noedit:false,
+    nodelete:false
+});
 
 Referral.add({
     referrer: {type: Types.Relationship, ref: 'User',required: true, index: true, initial: true},
@@ -9,13 +13,12 @@ Referral.add({
     email: {type: Types.Email},
     mobile: {type: Types.TextArray},
     award: {type: String},
-    completed: {type: Types.Boolean},
-
+    consumed: {type: Types.Boolean},
 });
 
 Referral.schema.virtual('canAccessKeystone').get(function () {
     return true;
 });
 
-Referral.defaultColumns = 'name, email, mobile';
+Referral.defaultColumns = 'referrer, name, email, mobile, award, consumed';
 Referral.register();
