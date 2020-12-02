@@ -21,6 +21,9 @@ keystone.init({
     //     extname: '.hbs',
     // }).engine,
     'mongo': process.env.MONGO_URI || process.env.MONGOLAB_URI || 'mongodb://localhost/hospital',
+    'cors allow origin': true,
+    'cors allow methods': true,
+    'cors allow headers': true,
 });
 keystone.import('models');
 keystone.set('locals', {
@@ -34,5 +37,7 @@ keystone.set('locals', {
     chartbeat_domain: keystone.get('chartbeat domain')
 });
 keystone.set('routes', require('./routes'));
-keystone.set('cors allow origin', true);
+// keystone.set('cors allow origin', true);
+// keystone.set('cors allow methods', true);
+// keystone.set('cors allow headers', true);
 keystone.start();

@@ -106,49 +106,35 @@ const login = async (req,res) => {
 
     const {email, password} = req.body;
     try{
-        let user = await UserModel.findOne({
-            email
-        });
-        if (!user || user.isDeleted){
-            return res.status(400).json({
-                message: "User Does Not Exist"
-            });
-        }else{
-            // compare password and call userFound if found
-            user._.password.compare(password, function (err, isMatch) {
-                if (!err && isMatch) {
-                    const payload = {
-                        user: {
-                            id: user._id
-                        }
-                    };
-                    console.log('ENV',process.env.JWT_SECRET);
-                    jwt.sign(
-                        payload,
-                        process.env.JWT_SECRET,
-                        {
-                            expiresIn: 360000
-                        },
-                        (err, token) => {
-                            if (err) throw err;
-                            // console.log('token', token)
-                            res.status(200).json({
-                                token
-                            });
-                        }
-                    );
-                } else {
-                    return res.status(400).json({
-                        message: "Incorrect Email or Password."
+        console.log('LOGIN 1',email,password);
+        let user = await UserModel.findOne({ email });
+        console.log('LOGIN 2',user);
+        if (!user || user.isDeleted) return res.status(400).json({ message: "User Does Not Exist" });
+        // compare password and call userFound if found
+        user._.password.compare(password, function (err, isMatch) {
+            if (err || !isMatch) return res.status(400).json({ message: "Incorrect Email or Password."});
+            const payload = {
+                user: { id: user._id }
+            };
+            delete user.password;
+            jwt.sign(
+                payload,
+                process.env.JWT_SECRET,
+                {
+                    expiresIn: 360000
+                },
+                (err, token) => {
+                    if (err) throw err;
+                    console.log('token', token)
+                    res.status(200).json({
+                        token,
+                        data:user
                     });
                 }
-            })
-        }
+            );
+        });
     }catch (e) {
-        return res.status(400).json({
-            message:"Something went wrong",
-            err:e
-        })
+        return res.status(400).json({ message:"Something went wrong", err:e })
     }
 }
 
