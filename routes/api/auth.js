@@ -106,9 +106,7 @@ const login = async (req,res) => {
 
     const {email, password} = req.body;
     try{
-        console.log('LOGIN 1',email,password);
         let user = await UserModel.findOne({ email });
-        console.log('LOGIN 2',user);
         if (!user || user.isDeleted) return res.status(400).json({ message: "User Does Not Exist" });
         // compare password and call userFound if found
         user._.password.compare(password, function (err, isMatch) {
@@ -125,7 +123,6 @@ const login = async (req,res) => {
                 },
                 (err, token) => {
                     if (err) throw err;
-                    console.log('token', token)
                     res.status(200).json({
                         token,
                         user

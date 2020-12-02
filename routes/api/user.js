@@ -3,11 +3,10 @@ const UserModel = keystone.list('User').model;
 const UserRoleModel = keystone.list('UserRole').model;
 
 async function getUser(req, res) {
-    console.log('req user',req.user);
     try{
         let user = await UserModel.findOne({_id: req.user._id}).lean();
         console.log('user',user)
-        return res.status(200).json({data:user});
+        return res.status(200).json({user});
     }catch (e) {
         return res.status(400).json({message:"Something went wrong.",err:e});
     }
