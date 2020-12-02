@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 
 const sendMail = async (mailOptions) => {
-
+    console.log('sending email...',process.env.gmailId,process.env.gmailPwd)
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
         service:'gmail',
@@ -26,3 +26,5 @@ const sendMail = async (mailOptions) => {
     // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
     // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 }
+
+exports = module.exports = sendMail;

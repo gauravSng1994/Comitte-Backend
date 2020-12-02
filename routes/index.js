@@ -32,8 +32,11 @@ exports = module.exports = function(app) {
     // app.get('/', routes.views.index);
     app.get('/demo',routes.api.index.demo)
     app.get('/jobs',routes.api.jobs.listJobs)
+
+    // auth
     app.post('/login',routes.api.auth.login)
     app.post('/signup',routes.api.auth.signup)
+    app.post('/resetPassword',routes.api.auth.resetPassword)
 
     // user
     app.get('/user',middleware.isLoggedIn,routes.api.user.getUser)

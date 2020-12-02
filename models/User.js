@@ -35,7 +35,7 @@ User.add({
   gender: {type: Types.Select, options: 'MALE, FEMALE, OTHER'},
   dob: {type: Types.Date, label: 'Date of Birth'},
   experienceInYears: {type: Types.Select, options: ['1', '2', '3', '4','5+']},
-  experienceInMonths: {type: Types.Select, options: ['1', '2', '3', '4','5+']},
+  experienceInMonths: {type: Types.Select, options: ['1', '2', '3', '4','5','6','7','8','9','10','11','12']},
   highestQualification: {type: Types.Select, options: ['GNM', 'BSC']},
   currentlyWorking: {type: Types.Select, options: ['YES', 'NO']},
   jobDetails: {type: Types.Relationship, ref: 'Experience', many:true},
@@ -49,6 +49,7 @@ User.add({
 },'Permissions',{
   role:{type: Types.Relationship, ref: 'UserRole', noedit: true,initial:true, required:false},
   isAdmin: {type: Boolean, label: 'Can access Admin', initial: true, index: true, default: true},
+  recentOtp:{type:String}
 });
 User.schema.virtual('canAccessKeystone').get(function () {
   return this.isAdmin;
