@@ -50,20 +50,27 @@ const signup = async (req, res) => {
         if (user) return res.status(400).json({
                 msg: "User Already Exists"
             });
-        console.log('Created new user');
         const selectedRole = await UserRoleModel.findOne({name:role},{_id:1});
+        // find first and last names
+        let splitName = name.split(" ");
+        let last = splitName.length > 1 ? splitName.pop() : "";
+        let first = splitName.join(" ");
         user = new UserModel({
-            name,
+            name:{
+                first,
+                last
+            },
             email,
             password,
+            isActive:true
         });
         if(selectedRole) user.role = selectedRole._id;
-        user.update({$push:{phoneNumbers:phoneNumber}});
-        // await user.save();
-
+        await user.save();
+        await user.update({$push:{phoneNumbers:phoneNumber}});
+        console.log('Created new user',user);
         const payload = {
             user: {
-                id: user.id
+                id: user._id
             }
         };
 
@@ -75,7 +82,7 @@ const signup = async (req, res) => {
             (err, token) => {
                 if (err) throw err;
                 res.cookie('xsrf-token', token, {maxAge: 900000, httpOnly: true});
-                res.send('')
+                res.status(200).json({token})
             }
         );
     } catch (err) {
@@ -143,6 +150,13 @@ const login = async (req,res) => {
     }
 }
 
+const resetPassword = (req,res) => {
+    // from: '"Fred Foo" <foo@example.com>', // sender address
+    // to: "bar@example.com, baz@example.com", // list of receivers
+    // subject: "Hello ✔", // Subject line
+    // text: "Hello world?", // plain text body
+    // html: "<b>Hello world?</b>", // html body
+}
 exports = module.exports = {
     login,
     signup

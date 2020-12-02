@@ -10,6 +10,7 @@ module.exports = {
 	 * @return {String|Object|Error} The data or Error object
 	 *
 	 * */
+
 	decrypt: function (cryptText) {
 		let data = null;
 		try {

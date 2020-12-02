@@ -1,12 +1,17 @@
-var keystone = require('keystone');
+const keystone = require('keystone');
 const Types = keystone.Field.Types;
 
-var Experience = new keystone.List('Experience');
+const Experience = new keystone.List('Experience',{
+    track:true,
+    drilldown:"user hospital"
+});
+
 
 Experience.add({
+    user: {type:Types.Relationship, initial:true, ref:"User",label:"Nurse"},
     title: {type: Types.Text, required: true, index: true, initial: true, label: 'Job Title'},
-    hospitalName: {type: Types.Text, required: true, index: true, initial: true},
-    currentlyWorkingHere: {type: Types.Select, options: ['Yes', 'No']},
+    hospital: {type: Types.Relationship, ref:"Hospital", required: true, index: true, initial: true},
+    currentlyWorkingHere: {type: Types.Select, options: ['YES', 'NO']},
     startDate: {type: Types.Date, label: 'Start Date'},
     endDate: {type: Types.Date, label: 'End Date'},
 });
@@ -15,5 +20,5 @@ Experience.schema.virtual('canAccessKeystone').get(function () {
     return true;
 });
 
-Experience.defaultColumns = 'title, hospitalName';
+Experience.defaultColumns = 'user, title, hospital, currentlyWorkingHere, startDate, endDate';
 Experience.register();
