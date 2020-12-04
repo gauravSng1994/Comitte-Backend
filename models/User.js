@@ -21,12 +21,13 @@ var User = new keystone.List('User',{
 });
 
 User.add({
+  //tenentId
   userName:{type:String}, // this will also behave as referral code
   name: {type: Types.Name, required: true, index: true, initial: true},
   email: { type: Types.Email, unique: true,required:true,initial:true },
   password: {type: Types.Password,required:true,initial:true},
-  phoneNumbers: {type: Types.TextArray},
-  lastLoggedIn: {type: Types.Datetime},
+  phoneNumbers: {type: Types.TextArray},// make object isPrimary isVerified
+  lastLoggedIn: {type: Number},// epoch time
   isActive:{type: Types.Boolean},
   isDeleted:{type: Types.Boolean},
   avatar: {type: String},
@@ -38,7 +39,7 @@ User.add({
   experienceInYears: {type: Types.Select, options: ['1', '2', '3', '4','5+']},
   experienceInMonths: {type: Types.Select, options: ['1', '2', '3', '4','5','6','7','8','9','10','11','12']},
   highestQualification: {type: Types.Select, options: ['GNM', 'BSC']},
-  currentlyWorking: {type: Types.Select, options: ['YES', 'NO']},
+  currentlyWorking: {type: Types.Select, options: ['YES', 'NO']}, // boolean
   jobDetails: {type: Types.Relationship, ref: 'Experience', many:true},
   nursingDegree: {type: String}, //to be modified to S3Storage
   aadharCard: {type: String}, //to be modified to S3Storage
@@ -46,11 +47,11 @@ User.add({
   lastWorkExperienceCertificate: {type: String}, //to be modified to S3Storage
   lastSalarySlip: {type: String}, //to be modified to S3Storage
   marksheet: {type: String}, //to be modified to S3Storage
-  availabilityOfwork:{type: Types.Datetime},
+  availability:{type: Types.Datetime}, // array
 },'Permissions',{
   role:{type: Types.Relationship, ref: 'UserRole', noedit: true,initial:true, required:false},
   isAdmin: {type: Boolean, label: 'Can access Admin', initial: true, index: true, default: true},
-  recentOtp:{type:String}
+  recentOtp:{type:String} // remove this field
 });
 User.schema.virtual('canAccessKeystone').get(function () {
   return this.isAdmin;

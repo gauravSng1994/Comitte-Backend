@@ -10,8 +10,9 @@ const Hospital = new keystone.List('Hospital',{
 
 Hospital.add({
     name: {type: Types.Text, required: true, index: true, initial: true, label: 'Hospital Name'},
+    //key for identifying if the hospital is verified or not
     address: {type: Types.TextArray},
-    location: {type: Types.Text},
+    location: {type: Types.Text}, // lat long
     departments: {type: Types.Relationship, ref: 'Department', many:true, initial: true},
 });
 

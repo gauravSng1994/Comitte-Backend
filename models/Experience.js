@@ -11,7 +11,7 @@ Experience.add({
     user: {type:Types.Relationship, initial:true, ref:"User",label:"Nurse"},
     title: {type: Types.Text, required: true, index: true, initial: true, label: 'Job Title'},
     hospital: {type: Types.Relationship, ref:"Hospital", required: true, index: true, initial: true},
-    currentlyWorkingHere: {type: Types.Select, options: ['YES', 'NO']},
+    currentlyWorkingHere: {type: Types.Select, options: ['YES', 'NO']}, // boolean
     startDate: {type: Types.Date, label: 'Start Date'},
     endDate: {type: Types.Date, label: 'End Date'},
 });
