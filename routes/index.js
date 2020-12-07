@@ -51,6 +51,10 @@ exports = module.exports = function(app) {
     app.post('/login',routes.api.auth.login)
     app.post('/signup',routes.api.auth.signup)
     app.post('/resetPassword',routes.api.auth.resetPassword)
+    app.post('/feedback',middleware.isLoggedIn,routes.api.feedback.createFeedback)
+    app.post('/referFriend',middleware.isLoggedIn,routes.api.referral.createReferral)
+
+
 
     app.get('/departments',routes.api.department.listDepartments)
     app.get('/hospitals',routes.api.hospital.listHospitals)
