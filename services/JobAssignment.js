@@ -47,6 +47,8 @@ const findUpcomingJobs = async (user)=>{
         { $unwind: "$job" },
         { $lookup:{ from:'hospitals',localField:'job.hospital',foreignField:'_id',as:'hospital'}},
         { $unwind: "$hospital" },
+        { $lookup:{ from:'departments',localField:'job.department',foreignField:'_id',as:'department'}},
+        { $unwind: "$department" },
     ]);
 }
 
