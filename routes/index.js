@@ -66,5 +66,5 @@ exports = module.exports = function(app) {
 
     // jobAssignments
     app.get('/jobs/nurses', middleware.isLoggedIn, routes.api.jobAssignment.listJobOfNurses)
-    app.get('/jobs/markMe/:jobId', middleware.isLoggedIn, routes.api.markMeIn.markMeIn)
+    app.get('/jobs/setInOutTime/:jobId', middleware.isLoggedIn, routes.api.jobAssignment.setInOutTime)
 }
