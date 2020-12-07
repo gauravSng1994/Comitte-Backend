@@ -18,7 +18,7 @@ JobAssignment.add({
     exitTime: {type: Types.Datetime, label: 'Exit Time'},
     rating: {type: Types.Number},
     assignmentApproval:{ type:Types.Select, options: ['PENDING', 'APPROVED', 'REJECTED'], default: 'APPROVED', initial:true },
-    completionApproval:{ type:Types.Select, options: ['PENDING', 'APPROVED', 'REJECTED'], default: 'PENDING' },
+    completionApproval:{ type:Types.Select, label:"Hospital Approval", options: ['PENDING', 'APPROVED', 'REJECTED'], default: 'PENDING' },
     // life cycle to be discussed
     acceptedByNurse: {type:Types.Boolean, default: false}
 });
