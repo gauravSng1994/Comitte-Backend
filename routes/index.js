@@ -62,7 +62,7 @@ exports = module.exports = function(app) {
     // user
     app.get('/user',middleware.isLoggedIn,routes.api.user.getUser)
     app.get('/nurses',middleware.isLoggedIn,routes.api.user.listNurses)
-    app.put('/user',middleware.isLoggedIn,routes.api.user.updateUser)
+    app.post('/updateUser',middleware.isLoggedIn,routes.api.user.updateUser)
 
     // jobAssignments
     app.get('/jobs/nurses', middleware.isLoggedIn, routes.api.jobAssignment.listJobOfNurses)

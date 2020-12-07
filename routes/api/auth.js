@@ -44,16 +44,15 @@ const signup = async (req, res) => {
         email,
         password,
         phoneNumber,
-        role="Nurse",
+        role="NURSE",
     } = req.body;
     try {
         let user = await UserModel.findOne({ email });
         console.log('Hello signup',name,email,password,user);
-        if (user) return res.status(400).json({
-                msg: "User Already Exists"
-            });
-        const selectedRole = await UserRoleModel.findOne({name:role},{_id:1});
+        if (user) return res.status(400).json({ msg: "User Already Exists" });
+        const selectedRole = await UserRoleModel.findOne({roleType:role},{_id:1});
         // find first and last names
+        console.log('ROLE',role,selectedRole);
         let splitName = name.split(" ");
         let last = splitName.length > 1 ? splitName.pop() : "";
         let first = splitName.join(" ");
@@ -64,11 +63,12 @@ const signup = async (req, res) => {
             },
             email,
             password,
-            isActive:true
+            role:selectedRole,
+            isActive: false,
         });
         if(selectedRole) user.role = selectedRole._id;
         await user.save();
-        await user.update({$push:{phoneNumbers:phoneNumber}});
+        await UserModel.update({_id:user._id},{$push:{phoneNumbers:phoneNumber}});
         console.log('Created new user',user);
         const payload = {
             user: {
@@ -84,7 +84,7 @@ const signup = async (req, res) => {
             (err, token) => {
                 if (err) throw err;
                 res.cookie('xsrf-token', token, {maxAge: 900000, httpOnly: true});
-                res.status(200).json({token})
+                res.status(200).json({token,user})
             }
         );
     } catch (err) {

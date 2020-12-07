@@ -33,13 +33,13 @@ User.add({
   avatar: {type: String},
   // location: {type: Types.GeoPoint},
   address: {type: Types.Location, defaults: {country: 'INDIA'} },
-  skills: {type: Types.Relationship, ref: 'Skill', many:true},
+  skills: {type: Types.Relationship, ref: 'Department', many:true},
   gender: {type: Types.Select, options: 'MALE, FEMALE, OTHER'},
   dob: {type: Types.Date, label: 'Date of Birth'},
   experienceInYears: {type: Types.Select, options: ['1', '2', '3', '4','5+']},
   experienceInMonths: {type: Types.Select, options: ['1', '2', '3', '4','5','6','7','8','9','10','11','12']},
   highestQualification: {type: Types.Select, options: ['GNM', 'BSC']},
-  currentlyWorking: {type: Types.Select, options: ['YES', 'NO']}, // boolean
+  currentlyWorking: {type: Types.Boolean},
   jobDetails: {type: Types.Relationship, ref: 'Experience', many:true},
   nursingDegree: {type: String}, //to be modified to S3Storage
   aadharCard: {type: String}, //to be modified to S3Storage
