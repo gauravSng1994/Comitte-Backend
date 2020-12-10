@@ -47,6 +47,7 @@ User.add({
   lastWorkExperienceCertificate: {type: String}, //to be modified to S3Storage
   lastSalarySlip: {type: String}, //to be modified to S3Storage
   marksheet: {type: String}, //to be modified to S3Storage
+  photograph: {type: String}, //to be modified to S3Storage
   availability:{type: Types.Datetime}, // array
 },'Permissions',{
   role:{type: Types.Relationship, ref: 'UserRole', noedit: true,initial:true, required:false},

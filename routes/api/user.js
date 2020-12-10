@@ -1,7 +1,7 @@
 const keystone = require('keystone');
 const UserModel = keystone.list('User').model;
 const UserRoleModel = keystone.list('UserRole').model;
-
+const {getPreSignedURL} = require('../../services/utils');
 async function getUser(req, res) {
     try{
         let user = await UserModel.findOne({_id: req.user._id}).lean();
@@ -51,10 +51,17 @@ const updateUser = async (req,res) => {
     }
 }
 
-
+const getUploadDocumentsPreSignedUrls = async (req,res) => {
+    const data = req.body;
+    console.log('DATA',data);
+    const urls = {};
+    for(const el in data) if(data.hasOwnProperty(el)) urls[el] = await getPreSignedURL(data[el]);
+    return res.status(200).json(urls);
+}
 
 exports = module.exports = {
     getUser,
     updateUser,
-    listNurses
+    listNurses,
+    getUploadDocumentsPreSignedUrls,
 }

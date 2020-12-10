@@ -56,6 +56,7 @@ Jobs.schema.virtual('canAccessKeystone').get(function () {
 
 Jobs.schema.pre('save', async function (next){
     console.log('isnew',this.isNew);
+    // await Jobs.findOne({_id:this._id});
     this.wasNew = this.isNew;
     next();
 })

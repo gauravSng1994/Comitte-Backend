@@ -1,4 +1,5 @@
-var keystone = require('keystone');
+const keystone = require('keystone');
+const AWS = require('aws-sdk');
 require('dotenv').config();
 // const handlebars = require('express-handlebars');
 keystone.init({
@@ -26,9 +27,22 @@ keystone.init({
     'cors allow headers': true,
 });
 keystone.import('models');
+const s3 = new AWS.S3({
+    "accessKeyId": process.env.ACCESS_KEY,
+    "secretAccessKey": process.env.SECRET,
+    "region": "us-west-2"
+});
+// AWS.config.update({
+//     "accessKeyId": process.env.ACCESS_KEY,
+//     "secretAccessKey": process.env.SECRET,
+//     "region": "us-west-2"
+// });
+s3.createBucket({Bucket: 'nurse'});
+
 keystone.set('locals', {
     _: require('lodash'),
     env: keystone.get('env'),
+    s3:s3,
     utils: keystone.utils,
     editable: keystone.content.editable,
     ga_property: keystone.get('ga property'),
@@ -36,8 +50,16 @@ keystone.set('locals', {
     chartbeat_property: keystone.get('chartbeat property'),
     chartbeat_domain: keystone.get('chartbeat domain')
 });
+function addSafeReadOnlyGlobal(prop, val) {
+    Object.defineProperty(global, prop, {
+        get: function () {
+            return val;
+        },
+        set: function () {
+            console.log('You are trying to set the READONLY GLOBAL variable `', prop, '`. This is not permitted. Ignored!');
+        }
+    });
+}
+addSafeReadOnlyGlobal('_s3',s3);
 keystone.set('routes', require('./routes'));
-// keystone.set('cors allow origin', true);
-// keystone.set('cors allow methods', true);
-// keystone.set('cors allow headers', true);
 keystone.start();
