@@ -1,12 +1,12 @@
 const getPreSignedURL = async (name)=>{
-    let myBucket = 'nurse';
+    let myBucket = 'nurse-app';
     // const myKey = `${Math.random().toString(36).replace(/[^a-z]+/g, '')}.jpeg`;
-    const signedUrlExpireSeconds = 60 * 5 // 5 min in seconds
+    const signedUrlExpireSeconds = 60 * 60  // 5/60 min in seconds
     let signedURL = await _s3.getSignedUrl('putObject', {
         Bucket: myBucket,
         Key: name, //myKey,
         Expires: signedUrlExpireSeconds,
-        ACL:'public-write'
+        ACL:'public-read'
     });
     console.log('Signed Url',name,signedURL);
     return signedURL

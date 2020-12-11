@@ -30,7 +30,8 @@ keystone.import('models');
 const s3 = new AWS.S3({
     "accessKeyId": process.env.ACCESS_KEY,
     "secretAccessKey": process.env.SECRET,
-    "region": "us-west-2"
+    // "region": "us-west-2"
+    "region": "us-east-2"
 });
 // AWS.config.update({
 //     "accessKeyId": process.env.ACCESS_KEY,

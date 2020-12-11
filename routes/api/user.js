@@ -26,10 +26,11 @@ const updateUser = async (req,res) => {
     let userId = req.user._id;
     try {
         let data = {...(req.body||{})};
-        for(const el in data) if(!data[el] || data[el]==="null") delete data[el];
+        for(const el in data) if(!data[el] && data[el]!==false) delete data[el];
+        console.log('To be updated',data);
         await UserModel.findOneAndUpdate({_id:userId},data);
         const updatedUser = await UserModel.findOne({_id:userId}).populate('skill');
-        console.log('updated user',updatedUser);
+        // console.log('updated user',updatedUser);
         return res.status(200).json({msg:"User updated successfully",data:updatedUser});
         //     gender,
         //     dob,
