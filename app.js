@@ -3,8 +3,10 @@ const AWS = require('aws-sdk');
 require('dotenv').config();
 // const handlebars = require('express-handlebars');
 keystone.init({
-    'name': 'Hospital app',
-    'cookie secret': process.env.COOKIE_SECRET || 'secure string goes here',
+    'name': 'Committee',
+    'brand': 'The Committee Admin',
+    'cookie secret': process.env.COOKIE_SECRET || 'adfdsfdsfsf5d5s4fsd56f4sd65f4d6sf54',
+    'admin path': 'admin',
     'user model': 'User',
     'auto update': true,
     'auth': true,
@@ -21,24 +23,19 @@ keystone.init({
     //     helpers: new require('./templates/views/helpers')(),
     //     extname: '.hbs',
     // }).engine,
-    'mongo': process.env.MONGO_URI || process.env.MONGOLAB_URI || 'mongodb://localhost/hospital',
+    'mongo': 'mongodb://localhost/committee',
+    // 'signin logo': {src: '/logo-light.jpeg', width: '100%'},
     'cors allow origin': true,
     'cors allow methods': true,
     'cors allow headers': true,
 });
 keystone.import('models');
 const s3 = new AWS.S3({
-    "accessKeyId": process.env.ACCESS_KEY,
-    "secretAccessKey": process.env.SECRET,
-    // "region": "us-west-2"
-    "region": "us-east-2"
+    "accessKeyId": process.env.S3_BUCKET_ACCESS_KEY,
+    "secretAccessKey": process.env.S3_BUCKET_SECRET,
+    "region": process.env.S3_BUCKET_REGION
 });
-// AWS.config.update({
-//     "accessKeyId": process.env.ACCESS_KEY,
-//     "secretAccessKey": process.env.SECRET,
-//     "region": "us-west-2"
-// });
-s3.createBucket({Bucket: 'nurse'});
+s3.createBucket({Bucket: process.env.S3_BUCKET_NAME});
 
 keystone.set('locals', {
     _: require('lodash'),
