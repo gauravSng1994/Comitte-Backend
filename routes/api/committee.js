@@ -1,11 +1,12 @@
 const keystone = require('keystone');
 const CommitteeModel = keystone.list('Committee').model;
+const ObjectId = require('mongoose').Types.ObjectId
 
 async function listCommittee(req, res) {
     try{
-        let userId = req.user._id;
-        let committee = await CommitteeModel.find({_id: req.user._id}).lean();
-        return res.status(200).json({user});
+        let userId = ObjectId(req.user._id);
+        let committee = await CommitteeModel.find({participants: userId});
+        return res.status(200).json({committee});
     }catch (e) {
         return res.status(400).json({message:"Something went wrong.",err:e});
     }
@@ -31,7 +32,6 @@ const createCommittee = async (req,res) => {
 const deleteCommittee = async (req,res) => {
     let userId = req.user._id;
     const {id} = req.params
-    console.log('committee id',id);
     try {
         // const com = CommitteeModel.findOne({_id:id});
         const committee = await CommitteeModel.findOne({_id:id});
@@ -60,6 +60,7 @@ const deleteCommittee = async (req,res) => {
 exports = module.exports = {
     // getUser,
     // updateUser,
+    listCommittee,
     createCommittee,
     deleteCommittee
 }

@@ -31,9 +31,17 @@ exports = module.exports = function(app) {
     // auth
     app.post('/login',routes.api.auth.login)
     app.post('/signup',routes.api.auth.signup)
+
     // user
     app.get('/user',middleware.isLoggedIn,routes.api.user.getUser)
+    app.get('/user/:emailMobile',middleware.isLoggedIn,routes.api.user.getUserFromEmailPhone)
+
+    // bid
+    app.get('/bid/:committee',middleware.isLoggedIn,routes.api.bid.listBids)
+    app.post('/bid',middleware.isLoggedIn,routes.api.bid.createBid)
+
     // committee
+    app.get('/committees',middleware.isLoggedIn,routes.api.committee.listCommittee);
     app.post('/committee',middleware.isLoggedIn,routes.api.committee.createCommittee);
     app.delete('/committee/:id',middleware.isLoggedIn,routes.api.committee.deleteCommittee);
 }

@@ -20,9 +20,14 @@ Committee.add({
   description: {type:String},
   amount: {type:Number},
   admins:{type:Types.Relationship, ref:"User",many:true},
-  bidMultipleAmount:{type:Number},
-  bidBaseAmount:{type:Number},
-  bidTime:{type:Number},
+  minBidStep:{type:Number}, // to be added to prev bid amount
+  lossPercent:{type:Number},
+  biddingCycleDate:{type:Number},
+  instantPaymentRewarding:{type:Types.Boolean,default:false},
+  instantPaymentRewardAmount:{type:Number,default:0},
+  instantPaymentRewardTime:{type:Number},
+  remainingBids:{type:Types.Number},
+  bidFinalisationTime:{type:Number},
   isActive:{type: Types.Boolean},
   isDeleted:{type: Types.Boolean},
 });

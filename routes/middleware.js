@@ -154,11 +154,13 @@ exports.isLoggedIn = function(req, res, next) {
     if (!token) return res.status(400).json({ message:"Token expired",err:"Token not found." });
     try {
         jwt.verify(token, process.env.JWT_SECRET, async (err, decoded)=>{
-            console.log(decoded);
+            console.log('decoded',decoded.user.id);
             if(err) return res.status(400).json({authError: true, message: 'Failed to authenticate token',err});
             else{
                 let user = await UserModel.findOne({_id:decoded.user.id}).lean();
-                if(user.isDeleted) return res.json({authError: true, message: 'Your account is disabled, please contact your administrator'});
+                if(!user) return res.status(400).json({authError: true, message: 'Invalid User'});
+                if(user.isDeleted) return res.status(400).json({authError: true, message: 'Your account is disabled, please contact your administrator'});
+                console.log('USER IN LOG',user);
                 req.user = user;
                 return next();
             }

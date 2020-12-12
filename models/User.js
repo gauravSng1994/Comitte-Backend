@@ -18,7 +18,7 @@ User.add({
   name: {type: Types.Name, required: true, index: true, initial: true},
   email: { type: Types.Email, unique: true,required:true,initial:true },
   password: {type: Types.Password,required:true,initial:true},
-  phoneNumbers: {type: Types.TextArray},// make object isPrimary isVerified
+  phoneNumber: {type: Number,unique:true,required:true,initial:true},// make object isPrimary isVerified
   lastLoggedIn: {type: Number},// epoch time
   isActive:{type: Types.Boolean},
   isDeleted:{type: Types.Boolean},
