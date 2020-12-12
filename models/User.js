@@ -29,8 +29,7 @@ User.add({
   aadharCard: {type: String}, //to be modified to S3Storage
   panCard: {type: String}, //to be modified to S3Storage
   photograph: {type: String}, //to be modified to S3Storage
-
-  bankAccounts:       { type: Relationship, ref: 'CashBank.createdBy', many: true },
+  bankAccounts:       { type: Types.Relationship, ref: 'CashBank', many: true },
 },'Permissions',{
   role:{type: Types.Relationship, ref: 'Role', noedit: true,initial:true, required:false},
   isAdmin: {type: Boolean, label: 'Can access Admin', initial: true, index: true, default: true},
