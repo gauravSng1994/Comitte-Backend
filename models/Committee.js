@@ -14,11 +14,12 @@ const Committee = new keystone.List('Committee',{
 });
 
 Committee.add({
-  name: {type: Types.Name, required: true, index: true, initial: true},
+  name: {type: String, required: true, index: true, initial: true},
   avatar: {type: String},
   participants: {type:Types.Relationship, ref:"User",many:true,initial:true},
   description: {type:String},
   amount: {type:Number},
+  admins:{type:Types.Relationship, ref:"User",many:true},
   bidMultipleAmount:{type:Number},
   bidBaseAmount:{type:Number},
   bidTime:{type:Number},
@@ -31,7 +32,6 @@ Committee.schema.virtual('canAccessKeystone').get(function () {
 });
 
 Committee.schema.pre('save', async function (next){
-  if(!this.userName) this.userName = await assignUserName();
   next();
 })
 

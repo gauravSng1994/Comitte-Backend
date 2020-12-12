@@ -33,4 +33,7 @@ exports = module.exports = function(app) {
     app.post('/signup',routes.api.auth.signup)
     // user
     app.get('/user',middleware.isLoggedIn,routes.api.user.getUser)
+    // committee
+    app.post('/committee',middleware.isLoggedIn,routes.api.committee.createCommittee);
+    app.delete('/committee/:id',middleware.isLoggedIn,routes.api.committee.deleteCommittee);
 }

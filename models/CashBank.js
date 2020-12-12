@@ -27,7 +27,6 @@ CashBank.schema.virtual('canAccessKeystone').get(function () {
 });
 
 CashBank.schema.pre('save', async function (next){
-    if(!this.userName) this.userName = await assignUserName();
     next();
 })
 

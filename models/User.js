@@ -22,6 +22,7 @@ User.add({
   lastLoggedIn: {type: Number},// epoch time
   isActive:{type: Types.Boolean},
   isDeleted:{type: Types.Boolean},
+  committees:{type:Types.Relationship,ref:'Committee',many:true},
   avatar: {type: String},
   address: {type: Types.Location, defaults: {country: 'INDIA'} },
   gender: {type: Types.Select, options: 'MALE, FEMALE, OTHER'},
