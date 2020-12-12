@@ -18,6 +18,10 @@ Committee.add({
   avatar: {type: String},
   participants: {type:Types.Relationship, ref:"User",many:true,initial:true},
   description: {type:String},
+  amount: {type:Number},
+  bidMultipleAmount:{type:Number},
+  bidBaseAmount:{type:Number},
+  bidTime:{type:Number},
   isActive:{type: Types.Boolean},
   isDeleted:{type: Types.Boolean},
 });
